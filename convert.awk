@@ -1,5 +1,5 @@
 # Convert an Atmosphere hosts file to AdGuard Home rules
-# for the persistent client NSWITCH.
+# for the persistent client 'NSwitch cfw'.
 # On a line that fails a check, stop with exit status 1.
 function fail(msg) {
   print "convert.awk: line " NR ": " msg > "/dev/stderr"
@@ -21,8 +21,8 @@ function fail(msg) {
       fail("bad host: " h)
     if (h !~ /nintendo/) fail("host without nintendo: " h)
     if (ip == "127.0.0.1" || ip == "0.0.0.0")
-      print h "^$client='NSWITCH'"
+      print h "^$client='NSwitch cfw'"
     else
-      print h "^$client='NSWITCH',dnsrewrite=NOERROR;A;" ip
+      print h "^$client='NSwitch cfw',dnsrewrite=NOERROR;A;" ip
   }
 }
